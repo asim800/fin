@@ -1,0 +1,18 @@
+[project]
+name = "fincalc"
+version = "0.1.0"
+description = "Financial calculations: pricing, metrics, risk"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.3.3",
+    "pandas>=2.3.2",
+    "scipy>=1.10",
+    "scikit-learn>=1.7.2",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

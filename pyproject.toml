@@ -1,0 +1,67 @@
+[project]
+name = "fin"
+version = "0.1.0"
+description = "Financial analysis workspace"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # Core numerical/data
+    "numpy>=2.3.3",
+    "pandas>=2.3.2",
+    "scipy>=1.10",
+
+    # Visualization
+    "matplotlib>=3.10.6",
+    "plotly>=6.5.1",
+    "seaborn>=0.13.2",
+
+    # Finance
+    "yfinance>=0.2.65",
+    "cvxpy>=1.7.2",
+    "ecos>=2.0.14",
+
+    # ML
+    "scikit-learn>=1.7.2",
+
+    # Web/API
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+
+    # Development
+    "ipdb>=0.13.13",
+    "ipython>=9.5.0",
+    "tqdm>=4.67.1",
+
+    # GUI (optional, for matplotlib backends)
+    "pyqt5>=5.15.11",
+
+    # Local lib packages (editable)
+    "findata",
+    "fincalc",
+    "finviz",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+]
+ml = [
+    "torch>=2.5.0,<2.6",
+    "torchaudio>=2.5.0,<2.6",
+    "torchvision>=0.20.0,<0.21",
+    "jupyter>=1.1.1",
+]
+
+[tool.uv]
+extra-index-url = ["https://download.pytorch.org/whl/cu124"]
+index-strategy = "unsafe-best-match"
+
+[tool.uv.sources]
+findata = { path = "lib/findata", editable = true }
+fincalc = { path = "lib/fincalc", editable = true }
+finviz = { path = "lib/finviz", editable = true }
+
+[tool.pytest.ini_options]
+pythonpath = ["lib/findata/src", "lib/fincalc/src", "lib/finviz/src", "projects"]
+testpaths = ["projects/*/tests"]
